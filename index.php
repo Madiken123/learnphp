@@ -1,38 +1,41 @@
 <?php
 
 class Box {
-    public $height;
-    protected $width;
-    private $lenght;
-
-    public function volume(){
-        return $this->height * $this->width * $this->lenght;
-    } 
-    public function getLenght(){
-        return $this->lenght;
+    public function __construct(){
+        echo "box was created\n";
     }
-    public function setLenght(){
-        if(is_numeric($lenght) && $lenght > 0 ) {
-            $this->lenght = $lenght;
-        } else {
-            $this->lenght = 0;
-        }
+    public function __call($name, $args){
+        var_dump($name, $args);
     }
-}
-
-class Metalbox extends Box {
-    public $weightPerUnit = 10;
-    public function weight(){
-        return $this->volume() * $this->wheightPerUnit;
+    public function __get($name){
+        return 'cool value';
     }
-    public function testProtected(){
-        var_dump($this->lenght);
+    public function __set($name, $value){
+        var_dump($name, $value);
+    }
+    public function __destruct(){
+        echo "box was destroyed\n";
+    }
+    public function __toString(){
+        return 'cool box';
+    }
+    public function __invoke(...$args){
+        var_dump($args);
     }
 }
 
-$box = new metalbox();
-$box->setlenght(121);
-$box->testProtected(141);
-var_dump($box); 
+function hello(){
+    $box =new Box();
+}
+
+$box = new Box();
+$box->name = 'Madiken';
+$box->something(1,2,'asd');
+$box->else('xd', true, NULL);
+var_dump($box->cats);
+var_dump($box);
+echo $box;
+$box(1,'asd', 'asda');
+
 
 ?>
