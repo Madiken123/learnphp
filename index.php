@@ -33,3 +33,10 @@ $metal2 = $metal2;
 $metal2->height = 2;
 var_dump($metal1, $metal2);
 
+trait HasMaterial {
+    public $metal;
+    public function getMaterial() {
+        return $this->material;
+    }
+}
+
